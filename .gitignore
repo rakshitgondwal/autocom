@@ -1,0 +1,6 @@
+# Ignore the autocom binary file
+autocom
+
+# Ignore the go modules cache
+/go.mod
+/go.sum
