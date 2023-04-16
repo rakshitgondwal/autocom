@@ -4,11 +4,13 @@ import (
 	"fmt"
 	"os"
 
+	"autocom/cmd/msg"
+
 	"github.com/spf13/cobra"
 )
 
 var (
-	version     string
+	version string
 )
 
 var rootCmd = &cobra.Command{
@@ -17,14 +19,18 @@ var rootCmd = &cobra.Command{
 	Long: `Autocom is an AI based CLI tool which can be used to generate
 			`,
 	Run: func(cmd *cobra.Command, args []string) {
-	  fmt.Println("Hi welcome!")
+		cmd.Printf("Hi welcome!")
 	},
-  }
-  
-  func Execute(v string) {
+}
+
+func Execute(v string) {
 	version = v
 	if err := rootCmd.Execute(); err != nil {
-	  fmt.Println(err)
-	  os.Exit(1)
+		fmt.Println(err)
+		os.Exit(1)
 	}
-  }
+}
+
+func init(){
+	rootCmd.AddCommand(msg.MsgCommand)
+}
