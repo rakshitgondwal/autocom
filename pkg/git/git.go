@@ -6,7 +6,7 @@ import (
 	"os/exec"
 )
 
-func GetStagedFiles() {
+func GetStagedFiles()string {
 	cmd := exec.Command("git", "diff", "--staged")
     var stdout, stderr bytes.Buffer
     cmd.Stdout = &stdout
@@ -16,5 +16,5 @@ func GetStagedFiles() {
         fmt.Printf("failed to run git command: %s", stderr.String())
     }
 
-	fmt.Print(stdout.String())
+	return(stdout.String())
 }
