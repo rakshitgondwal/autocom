@@ -3,14 +3,24 @@ package ai
 import (
 	"context"
 	"fmt"
+	"os"
+
+	"github.com/fatih/color"
 	openai "github.com/sashabaranov/go-openai"
+	"github.com/spf13/viper"
 )
 
 
 func GetCommitMsg(files string) {
 	default_promt := "Create an easily understandable one liner commit message from the file provided ahead" + files
+	authToken := viper.GetString("token")
 
-	client := openai.NewClient("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")
+	if authToken == ""{
+		color.Red("Please provide auth token using `autocom auth` first")
+		os.Exit(1)
+	}
+
+	client := openai.NewClient(authToken)
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{

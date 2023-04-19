@@ -4,13 +4,16 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/rakshitgondwal/autocom/cmd/auth"
 	"github.com/rakshitgondwal/autocom/cmd/msg"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 var (
 	version string
+	cfgFile string
 )
 
 var rootCmd = &cobra.Command{
@@ -31,6 +34,37 @@ func Execute(v string) {
 	}
 }
 
-func init(){
+func init() {
+
+}
+
+func init() {
+
+	cobra.OnInitialize(initConfig)
+
 	rootCmd.AddCommand(msg.MsgCommand)
+	rootCmd.AddCommand(auth.AuthCmd)
+
+}
+
+// initConfig reads in config file and ENV variables if set.
+func initConfig() {
+	if cfgFile != "" {
+		// Use config file from the flag.
+		viper.SetConfigFile(cfgFile)
+	} else {
+
+		// Search config in home directory with the name "autcom" (without extensions).
+		viper.AddConfigPath(".")
+		viper.SetConfigType("yaml")
+		viper.SetConfigName(".autocom")
+
+	}
+
+	viper.AutomaticEnv() //read in envirenment variables that match
+
+	// If a config file is found, read it in.
+	if err := viper.ReadInConfig(); err == nil {
+		fmt.Print("")
+	}
 }
