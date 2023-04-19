@@ -1,8 +1,8 @@
 package msg
 
 import (
-	"autocom/pkg/git"
-	"autocom/pkg/ai"
+	"github.com/rakshitgondwal/autocom/pkg/git"
+	"github.com/rakshitgondwal/autocom/pkg/ai"
 
 	"github.com/spf13/cobra"
 )

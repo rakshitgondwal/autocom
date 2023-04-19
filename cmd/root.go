@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"autocom/cmd/msg"
+	"github.com/rakshitgondwal/autocom/cmd/msg"
 
 	"github.com/spf13/cobra"
 )

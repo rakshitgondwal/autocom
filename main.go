@@ -1,7 +1,7 @@
 package main
 
 import (
-	"autocom/cmd"
+	"github.com/rakshitgondwal/autocom/cmd"
 )
 
 var version = "dev"
